@@ -9,6 +9,9 @@ services:
       - backend
     networks:
       - app-network
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules      
 
   backend:
     build: ./backend
