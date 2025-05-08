@@ -12,7 +12,6 @@ export default function SideBar() {
     const {setPageNum} = context;
     function handlePageTab(tabNum:string){
         setPageNum(tabNum);
-        console.log(tabNum);
     }
   return (
     <div className="bg-black rounded-tr-xl grid grid-cols-1 h-full m-8">
