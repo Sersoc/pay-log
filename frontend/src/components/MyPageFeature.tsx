@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { MyPageContext } from "../context/MyPageContext";
+import PayLogGrid from "./PayLogGrid";
 
 export default function MyPageFreature(){
     const context = useContext(MyPageContext);
@@ -11,6 +12,6 @@ export default function MyPageFreature(){
     return(
         <>
         {pageNum === "1" && <p className="text-5xl text-white font-bold">User Info</p>}
-        {pageNum === "2" && <p className="text-5xl text-white font-bold">Add Pay Log</p>}</>
+        {pageNum === "2" && <PayLogGrid/>}</>
     );
 }

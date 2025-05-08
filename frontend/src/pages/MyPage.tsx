@@ -11,7 +11,7 @@ export default function MyPage() {
         <section id="sidebar" className="col-span-1 h-full">
           <SideBar></SideBar>
         </section>
-        <section className="col-span-3 bg-sky-500 m-8">
+        <section className="col-span-3 m-8">
             <MyPageFreature/>
         </section>
       </div>
