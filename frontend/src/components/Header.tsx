@@ -1,7 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 import { ReactNode, useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import './Header.css';
 interface MyPayload {
   userId: string;
   username: string;
@@ -27,7 +27,7 @@ export default function Header({ children }: HeaderProps) {
   return (
     <div className="bg-black">
       <header className="bg-black text-3xl text-center text-white grid grid-cols-2">
-        <Link to="/" className="col-span-2">
+        <Link to="/" className="ghead">
           {children}
         </Link>
         <div className="text-right bg-black rounded-sm text-white">

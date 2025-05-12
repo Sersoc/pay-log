@@ -9,7 +9,7 @@ router.get("/:userId",async (req,res) => {
     try {
         const data = await searchAllLog(userId);
 
-        return res.json(data);
+        return res.json({values:data});
     } catch (error) {
         return res.status(500).send('Internal Server Error');
     }

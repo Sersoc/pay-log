@@ -1,0 +1,15 @@
+.ghead {
+    font-size: 3rem;
+    color: #fff;
+    background: url('../../public/gradiant.jpg') center;
+    background-size: cover;
+    background-clip: text;
+    color: transparent;
+    animation: animate 10s linear infinite;
+}
+
+@keyframes animate {
+    to{
+        background-position: -200px;
+    }
+}

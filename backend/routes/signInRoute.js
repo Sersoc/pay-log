@@ -1,9 +1,20 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
-const {isUserValid, signInUser} = require("../controllers/signInController");
+const {isUserValid, signInUser, selectUserInfo} = require("../controllers/signInController");
 
 const router = express.Router();
+router.get("/mypage/:userId",async(req,res)=>{
+    const {userId} = req.params;
 
+    try {
+        const response = await selectUserInfo(userId);
+
+        return res.json({values: response});
+    } catch (error) {
+        console.log("Err:",error.message);
+        return res.status(401).send('Search Fail!');
+    }
+})
 router.get("/:userId/:password", async (req, res) => {
     const userId = req.params.userId;
     const userPassword = req.params.password;
