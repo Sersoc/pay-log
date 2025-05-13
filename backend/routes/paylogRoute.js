@@ -1,5 +1,5 @@
 const express = require("express");
-const {searchAllLog,insertLog} = require("../controllers/paylogController");
+const {searchAllLog,insertLog,getSum} = require("../controllers/paylogController");
 
 const router = express.Router();
 
@@ -15,6 +15,18 @@ router.get("/:userId",async (req,res) => {
     }
 });
 
+router.get("/all/:userId", async(req,res) =>{
+    const {userId} = req.params;
+
+    try{
+        const data = await getSum(userId);
+
+        return res.json({values:data});
+    }catch(error){
+        console.log(error.message);
+        return res.status(500).send('Err Occur');
+    }
+})
 router.post("/:userId",async(req,res) => {
     const {userId} = req.params;
     const {amount,tag,description} = req.query;

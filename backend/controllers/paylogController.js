@@ -11,6 +11,16 @@ const searchAllLog = async (userId) => {
   }
 };
 
+const getSum = async (userId) => {
+  try {
+    const query = `SELECT tag,SUM(amount) AS total_price FROM tb_paylog WHERE id = ? GROUP BY tag`
+    const [rows] =  await pool.query(query,[userId]);
+    console.log(rows);
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+}
 const insertLog = async (userId, amount, tag, description) => {
   try {
     const query = `
@@ -26,4 +36,4 @@ const insertLog = async (userId, amount, tag, description) => {
     throw error;
   }
 };
-module.exports = { searchAllLog, insertLog };
+module.exports = { searchAllLog, insertLog, getSum };

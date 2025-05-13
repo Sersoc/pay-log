@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   VictoryBar,
   VictoryChart,
@@ -14,7 +15,20 @@ const sampleData = [
   { x: 6, y: 60 },
 ];
 
+interface PaySumData {
+  tag: string;
+  total_price: number;
+}
 export default function Main() {
+  const [paySum, setPaySum] = useState<PaySumData[]>([]);
+  const getUserSum = async () => {
+    const response = await fetch(`http://localhost:5000/paylog/all/${1}`);
+    const data = await response.json();
+    setPaySum(data.values);
+  };
+  useEffect(() => {
+    getUserSum();
+  },[]);
   return (
     <>
       <div>this is main page</div>
@@ -28,12 +42,7 @@ export default function Main() {
       <VictoryPie
         innerRadius={50}
         padAngle={5}
-        data={[
-          { x: "Cats", y: 30 },
-          { x: "Dogs", y: 35 },
-          { x: "Birds", y: 25 },
-          { x: "Rabbits", y: 10 },
-        ]}
+        data={paySum.map((item: PaySumData) => ({ x: item.tag, y: item.total_price }))}
         categories={{
           x: ["Cats", "Birds", "Dogs", "Rabbits"],
         }}
