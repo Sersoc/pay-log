@@ -1,5 +1,5 @@
 const express = require("express");
-const {searchAllLog} = require("../controllers/paylogController");
+const {searchAllLog,insertLog} = require("../controllers/paylogController");
 
 const router = express.Router();
 
@@ -15,4 +15,22 @@ router.get("/:userId",async (req,res) => {
     }
 });
 
+router.post("/:userId",async(req,res) => {
+    const {userId} = req.params;
+    const {amount,tag,description} = req.query;
+
+    try {
+        const response = await insertLog(userId,amount,tag,description);
+        if (response){
+            return true;
+        }else{
+            return false;
+        }
+        
+    } catch (error) {
+        console.log(error.message);
+        return res.status(500).send('internal server err');
+    }
+
+})
 module.exports = router;

@@ -16,7 +16,8 @@ export default function SideBar() {
   return (
     <div className="bg-black rounded-tr-xl grid grid-cols-1 h-full m-8">
       <SideBarButton onClickEvent={()=>handlePageTab("1")}>User Info</SideBarButton>
-      <SideBarButton onClickEvent={()=>handlePageTab("2")}>Add Pay Log</SideBarButton>
+      <SideBarButton onClickEvent={()=>handlePageTab("2")}>Retrieve Pay Log</SideBarButton>
+      <SideBarButton onClickEvent={()=>handlePageTab("3")}>Add Pay Log</SideBarButton>
     </div>
   );
 }
