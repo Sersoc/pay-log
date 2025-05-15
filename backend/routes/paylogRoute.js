@@ -34,7 +34,7 @@ router.post("/:userId",async(req,res) => {
     try {
         const response = await insertLog(userId,amount,tag,description);
         if (response){
-            return true;
+            return res.json(["ok:true"]);
         }else{
             return false;
         }

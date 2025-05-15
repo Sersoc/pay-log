@@ -21,6 +21,7 @@ export default function Header({ children }: HeaderProps) {
   }
   function handleToken() {
     localStorage.removeItem("authToken");
+    window.location.reload();  
   }
   useEffect(() => {}, [token]);
 

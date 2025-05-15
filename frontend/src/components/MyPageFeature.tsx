@@ -1,20 +1,16 @@
 import { useContext, useEffect, useRef } from "react";
 import { MyPageContext } from "../context/MyPageContext";
 import PayLogGrid, { PaylogHandle } from "./PayLogGrid";
-import { jwtDecode } from "jwt-decode";
+
 import UserInfo, { UserInfoHandle } from "./UserInfo";
 import AddPayLog from "./AddPayLog";
-interface MyPayload {
-  userId: string;
-  username: string;
-  role: string;
-  exp: number;
-  iat: number;
-}
+import { UserInfoContext } from "../context/UserInfoContext";
+
 export default function MyPageFreature() {
   const context = useContext(MyPageContext);
-  const token = localStorage.getItem("authToken");
-  const decoded = token ? jwtDecode<MyPayload>(token) : undefined;
+  const userContext = useContext(UserInfoContext);
+  
+  
   const userInfoRef = useRef<UserInfoHandle>(null);
   const paylogGridRef = useRef<PaylogHandle>(null);
 
@@ -22,7 +18,10 @@ export default function MyPageFreature() {
     return <div>Didn't Select Feature</div>;
   }
   const { pageNum } = context;
-
+  if(!userContext){
+    return;
+  }
+  const {userId} = userContext;
   useEffect(() => {
     if (pageNum === "1") {
       userInfoRef.current?.getUserInfo();
@@ -33,18 +32,18 @@ export default function MyPageFreature() {
 
   return (
     <>
-      {pageNum === "1" && decoded ? (
-        <UserInfo ref={userInfoRef} userId={decoded?.userId} />
+      {pageNum === "1" && userId ? (
+        <UserInfo ref={userInfoRef} userId={userId} />
       ) : (
         <></>
       )}
-      {pageNum === "2" && decoded ? (
-        <PayLogGrid ref={paylogGridRef} userId={decoded?.userId} />
+      {pageNum === "2" && userId ? (
+        <PayLogGrid ref={paylogGridRef} userId={userId} />
       ) : (
         <></>
       )}
-      {pageNum === "3" && decoded ? (
-        <AddPayLog  userId={decoded?.userId} />
+      {pageNum === "3" && userId ? (
+        <AddPayLog  userId={userId} />
       ) : (
         <></>
       )}
