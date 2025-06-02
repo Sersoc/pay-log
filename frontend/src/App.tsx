@@ -25,6 +25,7 @@ function App() {
     setUserId(decoded?decoded.userId:"");    
   },[])
   return (
+    <div className="bg-indigo-900">
     <UserInfoContext.Provider value={{userId,setUserId}}>
       <Router>
         <Header>Pay Log</Header>
@@ -36,6 +37,7 @@ function App() {
         </Routes>
       </Router>
     </UserInfoContext.Provider>
+    </div>
   );
 }
 

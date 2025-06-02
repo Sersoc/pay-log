@@ -26,8 +26,8 @@ export default function Header({ children }: HeaderProps) {
   useEffect(() => {}, [token]);
 
   return (
-    <div className="bg-black">
-      <header className="bg-black text-3xl text-center text-white grid grid-cols-2">
+    <div className="NavBar">
+      <header className="">
         <Link to="/" className="ghead">
           {children}
         </Link>
